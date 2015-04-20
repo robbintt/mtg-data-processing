@@ -1,0 +1,4 @@
+pragma table_info(Ncards);
+pragma table_info(Nsets);
+select Count(*) from Ncards;
+select Count(*) from Nsets;
