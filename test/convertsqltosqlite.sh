@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # USAGE: As 1st argument to this script, specify your .sql dump from Gatherer Extractor.
+# VERIFICATION: run get_dbinfo.sqlite after loading your new .sqlite db into sqlite3:
+#               # sqlite3 <the_new_db>.sqlite
+#               > .read get_dbinfo.sqlite
 
 # Perl command to convert windows to unix newlines
 # FROM: https://kb.iu.edu/d/acux
