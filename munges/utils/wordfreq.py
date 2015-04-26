@@ -12,7 +12,6 @@ it to the convert_to_frequency_dict() method.
 """
 
 
-
 def create_frequency_dict(sourcetext, sep=' '):
     """ Accepts a string and returns a frequency dictionary
 
