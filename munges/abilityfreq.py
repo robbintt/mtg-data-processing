@@ -43,4 +43,8 @@ for tuple_wrapped_string in ability_list:
 
 ability_freq_dict = utils.wordfreq.convert_to_frequency_dict(ability_strings)
 
-print ability_freq_dict
+sorted_ability_words = sorted([(v,k) for k,v in ability_freq_dict.iteritems()])
+
+
+for c,i in reversed(sorted_ability_words):
+    print c, i

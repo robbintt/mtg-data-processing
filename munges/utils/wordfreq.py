@@ -51,7 +51,6 @@ def convert_to_frequency_dict(listofstrings, sep=' '):
     partial_fdicts = list()
 
     for sourcetext in listofstrings:
-        print sourcetext
         partial_fdicts.append(create_frequency_dict(sourcetext, sep))
 
     return merge_frequency_dicts(partial_fdicts)
