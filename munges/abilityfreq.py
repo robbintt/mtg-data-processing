@@ -10,7 +10,7 @@ def clean_text(dirtytext):
     """ Apply various cleaning to the text.
 
     """
-    allowed_chars = r'[^-a-zA-Z0-9]'
+    allowed_chars = r"[^a-zA-Z0-9'/{}+-]"
     repl_char = ' '
 
     cleantext = re.sub(allowed_chars, repl_char, dirtytext)
