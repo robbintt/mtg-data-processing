@@ -1,3 +1,6 @@
+This format gives frequency with the word after it.
+(How often the word occurs across the ability field of all cards in standard)
+
 10780 
 1492 creature
 1174 you
