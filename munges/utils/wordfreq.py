@@ -29,15 +29,15 @@ def create_frequency_dict(sourcetext, sep=' '):
     return source_fdict
 
 
-def merge_frequency_dicts(*args):
+def merge_frequency_dicts(partial_fdicts):
     """ accepts any number of word frequency dictionaries and merges them.
     
     """
     aggregate_dictionary = dict()
 
-    for fdict in args:
+    for fdict in partial_fdicts:
         for k,v in fdict.iteritems():
-            aggregate_dictionary[k] += aggregate_dictionary.get(k, 0) + v
+            aggregate_dictionary[k] = aggregate_dictionary.get(k, 0) + v
 
     return aggregate_dictionary
 
@@ -51,6 +51,7 @@ def convert_to_frequency_dict(listofstrings, sep=' '):
     partial_fdicts = list()
 
     for sourcetext in listofstrings:
+        print sourcetext
         partial_fdicts.append(create_frequency_dict(sourcetext, sep))
 
     return merge_frequency_dicts(partial_fdicts)
