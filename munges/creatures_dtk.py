@@ -28,7 +28,7 @@ def clean_text(dirtytext):
     return cleantext
     
 
-statement = "select Nname,Npower,Ntoughness from Ncards where Npower<>'' and Ntoughness<>''"
+statement = "select Nname,Npower,Ntoughness from Ncards where Npower<>'' or Ntoughness<>''"
 
 conn = sqlite3.connect(sample_db)
 cur = conn.cursor()
