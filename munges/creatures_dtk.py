@@ -28,7 +28,7 @@ def clean_text(dirtytext):
     return cleantext
     
 
-statement = "select Nname,Npower,Ntoughness from Ncards where Npower<>'' or Ntoughness<>''"
+statement = "select Nname,Nconverted_manacost,Npower,Ntoughness from Ncards where Npower<>'' or Ntoughness<>''"
 
 conn = sqlite3.connect(sample_db)
 cur = conn.cursor()
@@ -36,8 +36,9 @@ cur = conn.cursor()
 cur.execute(statement)
 fetched_cards = cur.fetchall()
 
-names, powers, toughnesses = zip(*fetched_cards)
+names, cmc, powers, toughnesses = zip(*fetched_cards)
 names = list(names)
+cmc = list(cmc)
 powers = list(powers)
 toughnesses = list(toughnesses)
 
@@ -50,8 +51,8 @@ while len(names_test) > 0:
         print("Names has a nonunique: {}".format(name))
 print("All card names are unique, {} cards.".format(len(names)))
 
-creature_size = zip(powers, toughnesses)
-print creature_size
+creature_size = zip(cmc, powers, toughnesses)
+print sorted(creature_size)
 
 """
 # ditch the tuple wrapping in each item of the list.
