@@ -27,33 +27,6 @@ def clean_text(dirtytext):
 
     return cleantext
     
-
-statement = "select Nname,Nconverted_manacost,Npower,Ntoughness from Ncards where Npower<>'' or Ntoughness<>''"
-
-conn = sqlite3.connect(sample_db)
-cur = conn.cursor()
-
-cur.execute(statement)
-fetched_cards = cur.fetchall()
-
-names, cmc, powers, toughnesses = zip(*fetched_cards)
-names = list(names)
-cmc = list(cmc)
-powers = list(powers)
-toughnesses = list(toughnesses)
-
-
-# Test if all card names are unique.
-names_test = copy.deepcopy(names)
-while len(names_test) > 0:
-    name = names_test.pop()
-    if name in names_test:
-        print("Names has a nonunique: {}".format(name))
-print("All card names are unique, {} cards.".format(len(names)))
-
-creature_size = zip(cmc, powers, toughnesses)
-print sorted(creature_size)
-
 """
 # ditch the tuple wrapping in each item of the list.
 # utils.wordfreq.convert_to_frequency_dict requires a list of strings.
@@ -70,3 +43,47 @@ sorted_ability_words = sorted([(v,k) for k,v in ability_freq_dict.iteritems()])
 for c,i in reversed(sorted_ability_words):
     print c, i
 """
+
+def try_int(v):
+    """ Convert to an int and return input on ValueError.
+    """
+    try:
+        v = int(v)
+    except ValueError:
+        pass
+    return v
+
+statement = "select Nname,Nconverted_manacost,Npower,Ntoughness from Ncards where Npower<>'' or Ntoughness<>''"
+
+conn = sqlite3.connect(sample_db)
+cur = conn.cursor()
+
+cur.execute(statement)
+fetched_cards = cur.fetchall()
+
+names, cmc, powers, toughnesses = zip(*fetched_cards)
+names = list(names)
+# Map to int if possible with try_int
+cmc = map(try_int, cmc)
+powers = map(try_int, powers)
+toughnesses = map(try_int, toughnesses)
+
+
+# Test if all card names are unique.
+names_test = copy.deepcopy(names)
+while len(names_test) > 0:
+    name = names_test.pop()
+    if name in names_test:
+        print("Names has a nonunique: {}".format(name))
+print("All card names are unique, {} cards.".format(len(names)))
+
+creature_size = zip(cmc, powers, toughnesses)
+print sorted(creature_size)
+
+import numpy as np
+from matplotlib import pyplot as plt
+
+print cmc
+
+plt.bar(range(len(cmc)), sorted(cmc))
+plt.show()
