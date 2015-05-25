@@ -9,7 +9,7 @@ import copy
 
 # This uses a symlink, may break in non posix.
 # use os.path.join here if you wish.
-sample_db = "../db/frf.sqlite"
+sample_db = "../db/ths.sqlite"
 
 def clean_text(dirtytext):
     """ Apply various cleaning to the text.
