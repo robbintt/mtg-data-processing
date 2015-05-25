@@ -101,17 +101,23 @@ print("Static-sized creature size: {}".format(len(creature_size)))
 
 
 from matplotlib import pyplot as plt
+import numpy as np
 
+# Rudimentary sort and organization of relevant data.
 cmc, powers, toughnesses = zip(*sorted(creature_size))
+
 legend = ["cmc", "power", "toughness"]
 xlabel = "cmc"
 ylabel = "power"
 
-plt.plot(range(len(cmc)), cmc)
-plt.plot(range(len(powers)), powers)
-plt.plot(range(len(toughnesses)), toughnesses)
 plt.legend(legend)
-plt.xlabel(xlabel)
-plt.ylabel(ylabel)
-plt.grid()
+#plt.xlabel(xlabel)
+#plt.ylabel(ylabel)
+
+bins = (max(powers), max(toughnesses))
+heatmap, xedges, yedges = np.histogram2d(powers, toughnesses, bins=bins)
+extent = [xedges[0], xedges[-1], yedges[0], yedges[-1]]
+
+plt.clf()
+plt.imshow(heatmap, extent=extent)
 plt.show()
