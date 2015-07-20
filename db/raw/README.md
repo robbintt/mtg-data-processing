@@ -12,3 +12,5 @@ Instructions:
 
 Issues:
 Sqlite supports about 500 records in a single insert. If you have more, you will have to manually break it up into more inserts with fewer records per insert.
+
+After Magic: Origins, the set data was not updated in Gatherer Extractor. I manually updated it in the gatherer extractor set data in menu->options->Booster packaging.
